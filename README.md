@@ -1,2 +1,2 @@
-# the-whispering-shadows-caverns
-The Whispering Shadows Caverns!
+# The Whispering Shadows Caverns
+Tabalho final de Computação Gráfica
