@@ -1,32 +1,36 @@
 #include <iostream>
 #include <GL/glut.h>
-
-struct Dimension {
-  double width;
-  double height;
-};
+#include "utils/dimension.cpp"
+#include "camera.cpp"
+#include "game.cpp"
 
 Dimension window;
 Dimension screen;
+
+Camera camera;
+Game game;
 
 void display () {
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-  // Viewport
-  glMatrixMode( GL_PROJECTION );
-  glLoadIdentity();
-  double ar = screen.width / screen.height;
-  glOrtho( -2 * ar, 2 * ar, -2, 2, -1, 1);
+  // Isometric viewport
+  glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0f, window.width, 0.0f, window.height, -1000.0f, 1000.0f);
+  
+  glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glRotatef(35.264f, 1.0f, 0.0f, 0.0f);
+	glTranslatef(window.width/2, window.height/2, 0.0f);
+	glRotatef(-45.0f, 0.0f, 1.0f, 0.0f);
+	glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+	glScalef(50.0f, 50.0f, 50.0f);
+
+  camera.onRender(window);
   
   // Render stuff.
-  glBegin(GL_QUADS);
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glVertex2f(-0.5f, -0.5f);
-    glVertex2f( 0.5f, -0.5f);
-    glVertex2f( 0.5f,  0.5f);
-    glVertex2f(-0.5f,  0.5f);
-  glEnd();
+  game.render(screen);
  
   glutSwapBuffers();
 }
@@ -34,13 +38,13 @@ void display () {
 int main (int argc, char** argv) {
   glutInit(&argc, argv);
 
-  screen = { 1024, 768 };
-  window = { (double)glutGet(GLUT_SCREEN_WIDTH), (double)glutGet(GLUT_SCREEN_HEIGHT) };
+  window = { 1024, 768 };
+  screen = { (double)glutGet(GLUT_SCREEN_WIDTH), (double)glutGet(GLUT_SCREEN_HEIGHT) };
 
-  glutInitWindowSize(screen.width, screen.height);
+  glutInitWindowSize(window.width, window.height);
   glutInitDisplayMode( GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE );
   glutCreateWindow("The Whispering Shadows Caverns");
-  glutInitWindowPosition((window.width-screen.width)/2, (window.height-screen.height)/2);
+  glutInitWindowPosition((screen.width-window.width)/2, (screen.height-window.height)/2);
   glutDisplayFunc(display);
   glutMainLoop();
 
