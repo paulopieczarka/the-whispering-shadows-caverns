@@ -1,6 +1,4 @@
 
-void drawTile (Vector3f, Vector3f);
-
 void drawTile (Vector3f position, Material material) {
   glPushMatrix();
 
