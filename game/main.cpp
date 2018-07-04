@@ -4,6 +4,7 @@
 #include "utils/dimension.cpp"
 #include "utils/materials.cpp"
 #include "inputs/keyboard.cpp"
+#include "inputs/mouse.cpp"
 #include "camera.cpp"
 #include "game.cpp"
 
@@ -86,6 +87,9 @@ int main (int argc, char** argv) {
   // glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
   glutKeyboardFunc(onKeyDown);
   glutKeyboardUpFunc(onKeyUp);
+  glutMouseFunc(onMouseClick);
+  glutMotionFunc(onMouseDrag);
+  glutPassiveMotionFunc(onMouseMove);
   glutIdleFunc(gameLoop);
   glutMainLoop();
 
