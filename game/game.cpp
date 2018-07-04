@@ -4,6 +4,8 @@
 class Game {
   public:
     int size = 16;
+    double playerX = 2;
+    double playerY = 2;
 
     void render (Dimension);
     void update (double);
@@ -19,11 +21,22 @@ void Game::render (Dimension screen) {
       }
     }
   }
+  
+  drawCube({playerX, playerY, 0}, materialGreen);
 }
 
 void Game::update (double delta) {
-  if (keyboard.isKeyDown(KEY_W)) {
-    std::cout << "WWWW\n";
+  if (keyboard.isKeyPressed(KEY_W)) {
+    playerY++;
+  }
+  else if (keyboard.isKeyPressed(KEY_S)) {
+    playerY--;
+  }
+  else if (keyboard.isKeyPressed(KEY_A)) {
+    playerX--;
+  }
+  else if (keyboard.isKeyPressed(KEY_D)) {
+    playerX++;
   }
 
   if (mouse.isButtonPressed(MOUSE_LEFT_BUTTON)) {

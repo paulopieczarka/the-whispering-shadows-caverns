@@ -41,6 +41,7 @@ void display () {
 
 void gameLoop () {
   game.update(1);
+  glutPostRedisplay();
 }
 
 void displayIsometricView () {
@@ -84,7 +85,7 @@ int main (int argc, char** argv) {
   glutCreateWindow("The Whispering Shadows Caverns");
   glutInitWindowPosition((screen.width-window.width)/2, (screen.height-window.height)/2);
   glutDisplayFunc(display);
-  // glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+  glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
   glutKeyboardFunc(onKeyDown);
   glutKeyboardUpFunc(onKeyUp);
   glutMouseFunc(onMouseClick);
