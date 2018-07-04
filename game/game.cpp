@@ -22,5 +22,7 @@ void Game::render (Dimension screen) {
 }
 
 void Game::update (double delta) {
-
+  if (keyboard.isKeyDown(KEY_W)) {
+    std::cout << "WWWW\n";
+  }
 }

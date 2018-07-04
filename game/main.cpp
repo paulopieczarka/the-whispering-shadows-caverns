@@ -3,8 +3,11 @@
 #include "utils/vector3f.cpp"
 #include "utils/dimension.cpp"
 #include "utils/materials.cpp"
+#include "inputs/keyboard.cpp"
 #include "camera.cpp"
 #include "game.cpp"
+
+using namespace std;
 
 // Config
 Dimension window;
@@ -19,6 +22,7 @@ void display();
 void init();
 void displayIsometricView();
 void displayWithLighting();
+void gameLoop();
 
 
 void display () {
@@ -32,6 +36,10 @@ void display () {
   game.render(screen);
  
   glutSwapBuffers();
+}
+
+void gameLoop () {
+  game.update(1);
 }
 
 void displayIsometricView () {
@@ -75,6 +83,10 @@ int main (int argc, char** argv) {
   glutCreateWindow("The Whispering Shadows Caverns");
   glutInitWindowPosition((screen.width-window.width)/2, (screen.height-window.height)/2);
   glutDisplayFunc(display);
+  // glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+  glutKeyboardFunc(onKeyDown);
+  glutKeyboardUpFunc(onKeyUp);
+  glutIdleFunc(gameLoop);
   glutMainLoop();
 
   return 0;
