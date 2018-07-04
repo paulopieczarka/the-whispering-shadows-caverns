@@ -27,6 +27,10 @@ class Keyboard {
 };
 
 Keyboard::Keyboard () {
+  pool();
+}
+
+void Keyboard::pool () {
   for (int i=0; i < keyLength; i++) {
     keyState[i] = KEY_STATE_NONE;
   }
