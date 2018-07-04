@@ -4,7 +4,7 @@ class Camera {
     double y = 0.0;
 
   public:
-    void onRender (Dimension);
+    void render (Dimension);
     void setPosition (double, double);
 
     double getPosX ();
@@ -16,7 +16,7 @@ void Camera::setPosition (double _x, double _y) {
   y = _y;
 };
 
-void Camera::onRender (Dimension window) {
+void Camera::render (Dimension window) {
 	glTranslatef(x, y, 0.0f);
 };
 

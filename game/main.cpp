@@ -27,7 +27,7 @@ void display () {
 	glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glScalef(50.0f, 50.0f, 50.0f);
 
-  camera.onRender(window);
+  camera.render(window);
   
   // Render stuff.
   game.render(screen);
