@@ -1,4 +1,6 @@
+#include <cstdlib>
 #include <iostream>
+#include <ctime>
 #include <GL/glut.h>
 #include "utils/vector3f.cpp"
 #include "utils/dimension.cpp"
@@ -69,7 +71,8 @@ void displayWithLighting () {
 
 void init () {
   glEnable(GL_MULTISAMPLE);
-  
+
+  std::srand(std::time(nullptr));
   game.init();
 }
 

@@ -7,15 +7,15 @@ class Player : public Entity {
 
 void Player::update (int delta) {
   if (keyboard.isKeyPressed(KEY_W)) {
-    posY++;
+    move(ENTITY_MOVE_FORWARD);
   }
   else if (keyboard.isKeyPressed(KEY_S)) {
-    posY--;
+    move(ENTITY_MOVE_BACKWARD);
   }
   else if (keyboard.isKeyPressed(KEY_A)) {
-    posX--;
+    move(ENTITY_MOVE_LEFT);
   }
   else if (keyboard.isKeyPressed(KEY_D)) {
-    posX++;
+    move(ENTITY_MOVE_RIGHT);
   }
 }
