@@ -1,5 +1,6 @@
 #include "prefabs/tile.cpp"
 #include "prefabs/cube.cpp"
+#include "entities/player.cpp"
 
 class Game {
   public:
@@ -7,9 +8,16 @@ class Game {
     double playerX = 2;
     double playerY = 2;
 
+    Player player;
+
+    void init ();
     void render (Dimension);
     void update (double);
 };
+
+void Game::init () {
+  player.spawn(2, 2);
+}
 
 void Game::render (Dimension screen) {
   for (int i=0; i < size; i++){
@@ -22,22 +30,11 @@ void Game::render (Dimension screen) {
     }
   }
   
-  drawCube({playerX, playerY, 0}, materialGreen);
+  player.render();
 }
 
 void Game::update (double delta) {
-  if (keyboard.isKeyPressed(KEY_W)) {
-    playerY++;
-  }
-  else if (keyboard.isKeyPressed(KEY_S)) {
-    playerY--;
-  }
-  else if (keyboard.isKeyPressed(KEY_A)) {
-    playerX--;
-  }
-  else if (keyboard.isKeyPressed(KEY_D)) {
-    playerX++;
-  }
+  player.update(delta);
 
   if (mouse.isButtonPressed(MOUSE_LEFT_BUTTON)) {
     std::cout << "Click\n";

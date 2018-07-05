@@ -69,6 +69,8 @@ void displayWithLighting () {
 
 void init () {
   glEnable(GL_MULTISAMPLE);
+  
+  game.init();
 }
 
 int main (int argc, char** argv) {
@@ -93,6 +95,7 @@ int main (int argc, char** argv) {
   glutPassiveMotionFunc(onMouseMove);
   glutIdleFunc(gameLoop);
   glutMainLoop();
+
 
   return 0;
 }
