@@ -2,6 +2,7 @@
 #include "prefabs/cube.cpp"
 #include "entities/player.cpp"
 #include "entities/shadow.cpp"
+#include "world.cpp"
 
 class Game {
   public:
@@ -10,6 +11,7 @@ class Game {
     double playerX = 2;
     double playerY = 2;
 
+    World world;
     Player player;
     Shadow monsters[16];
 
@@ -24,15 +26,7 @@ void Game::init () {
 }
 
 void Game::render (Dimension screen) {
-  for (int i=0; i < size; i++){
-    for (int j=0; j < size; j++){
-      drawTile({(double)i, (double)j, 0}, materialBronze);
-
-      if (i == 0 || j == 0 || i == size-1 || j == size-1) {
-        drawCube({(double)i, (double)j, 0}, materialGreen);
-      }
-    }
-  }
+  world.render();
 
   for (int i=0; i < monstersLength; i++) {
     monsters[i].render();
@@ -42,6 +36,8 @@ void Game::render (Dimension screen) {
 }
 
 void Game::update (double delta) {
+  world.update(delta);
+
   for (int i=0; i < monstersLength; i++) {
     monsters[i].entityUpdate(delta);
   }
