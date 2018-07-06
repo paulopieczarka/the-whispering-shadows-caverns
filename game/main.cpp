@@ -28,6 +28,9 @@ void displayIsometricView();
 void displayWithLighting();
 void gameLoop();
 
+// Stuff
+int lastUpdateTime = 0;
+
 
 void display () {
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -43,7 +46,11 @@ void display () {
 }
 
 void gameLoop () {
-  game.update(1);
+  int startTime = glutGet(GLUT_ELAPSED_TIME);
+  int delta = startTime - lastUpdateTime;
+  lastUpdateTime = startTime;
+
+  game.update(delta);
   glutPostRedisplay();
 }
 

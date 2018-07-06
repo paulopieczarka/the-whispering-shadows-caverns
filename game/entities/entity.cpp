@@ -32,35 +32,37 @@ void Entity::move (int direction) {
 }
 
 void Entity::moveEffect (int delta) {
+  double deltaSpeed = moveSpeed * delta;
+
   if (moveDirection != ENTITY_MOVE_NONE) {
     if (moveDistance <= 0) {
       moveDirection = ENTITY_MOVE_NONE;
       moveDistance = 0;
     }
     else if (moveDirection == ENTITY_MOVE_FORWARD) {
-      posY += moveSpeed;
+      posY += deltaSpeed;
     }
     else if (moveDirection == ENTITY_MOVE_BACKWARD) {
-      posY -= moveSpeed;
+      posY -= deltaSpeed;
     }
     else if (moveDirection == ENTITY_MOVE_LEFT) {
-      posX -= moveSpeed;
+      posX -= deltaSpeed;
     }
     else if (moveDirection == ENTITY_MOVE_RIGHT) {
-      posX += moveSpeed;
+      posX += deltaSpeed;
     }
 
     if (moveDistance <= .5) {
-      posZ -= moveSpeed;
+      posZ -= deltaSpeed;
       if (posZ < 0) {
         posZ = 0;
       }
     }
     else {
-      posZ += moveSpeed;
+      posZ += deltaSpeed;
     }
 
-    moveDistance -= moveSpeed;
+    moveDistance -= deltaSpeed;
   }
 }
 

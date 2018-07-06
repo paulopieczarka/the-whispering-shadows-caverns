@@ -1,6 +1,7 @@
 #define TILE_DIRT 0
 
 struct Tile {
+  int id;
   Material material;
   bool isSolid;
 };
@@ -27,7 +28,7 @@ World::World () {
   }
 
   std::vector<Tile> tiles;
-  tiles.push_back({ materialBronze, false });
+  tiles.push_back({ 0, materialBronze, false });
 
   generate();
 }
