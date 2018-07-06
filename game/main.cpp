@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <vector>
 #include <GL/glut.h>
 #include "utils/vector3f.cpp"
 #include "utils/dimension.cpp"
